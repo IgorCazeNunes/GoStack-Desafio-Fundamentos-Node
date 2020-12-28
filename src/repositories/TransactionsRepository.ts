@@ -19,15 +19,28 @@ class TransactionsRepository {
     this.transactions = [];
   }
 
-  /*
   public all(): Transaction[] {
-    // TODO
+    return this.transactions;
   }
 
   public getBalance(): Balance {
-    // TODO
+    let income = 0;
+    let outcome = 0;
+
+    this.transactions.forEach(transaction => {
+      if (transaction.type === 'income') {
+        income += transaction.value;
+      } else {
+        outcome += transaction.value;
+      }
+    });
+
+    return {
+      income,
+      outcome,
+      total: income - outcome,
+    };
   }
-  */
 
   public create({ title, value, type }: CreateTransactionDTO): Transaction {
     const transaction = new Transaction({ title, value, type });
